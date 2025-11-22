@@ -41,7 +41,6 @@
 
 # Структура проекта
 src/  
-\
 ├── atc/  
 │    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── model/&nbsp;&nbsp;&nbsp;&nbsp;Tariff, TariffType
 \
