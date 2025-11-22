@@ -48,7 +48,7 @@ src/
 \
 │    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── io/&nbsp;&nbsp;&nbsp;&nbsp;CsvIO
 \
-└──&nbsp;├── ui/&nbsp;&nbsp;&nbsp;&nbsp;MainApp, MainFrame, TariffFormDialog, TariffTableModel
+└──&nbsp;&nbsp;├── ui/&nbsp;&nbsp;&nbsp;&nbsp;MainApp, MainFrame, TariffFormDialog, TariffTableModel
 
 
 # Требования для запуска через .jar
