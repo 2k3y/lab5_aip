@@ -61,8 +61,8 @@
       price    REAL NOT NULL,
       discount REAL NOT NULL,
       UNIQUE (city, type, price, discount)
-  );
-
+  );  
+  ```
   ## Доступ к данным
 
 Доступ к данным реализован через слой репозиториев (`atc.data`):
@@ -88,6 +88,7 @@ src/
 │   │             InMemoryTariffRepository,
 │   │             SqliteTariffRepository
 └── ui          — App, MainFrame, TariffFormDialog, TariffTableModel
+```
 
 ## Требования для запуска через .jar
 
