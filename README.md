@@ -62,3 +62,50 @@
       discount REAL NOT NULL,
       UNIQUE (city, type, price, discount)
   );
+
+  ## Доступ к данным
+
+Доступ к данным реализован через слой репозиториев (`atc.data`):
+
+- `TariffRepository` — интерфейс хранилища;
+- `InMemoryTariffRepository` — in-memory реализация (для тестов);
+- `SqliteTariffRepository` — основная реализация на SQLite через JDBC.
+
+`TariffManager` работает не с «сырым» списком, а через `TariffRepository`:
+
+- добавление / изменение / удаление тарифов сразу отражаются в БД;
+- методы агрегирования (средняя / общая цена, массовое изменение) рассчитываются по данным из БД.
+
+## Структура проекта
+
+```text
+src/
+├── atc/
+│   ├── model   — Tariff, TariffType
+│   ├── service — TariffManager, TariffException
+│   ├── io      — CsvIO
+│   ├── data    — TariffRepository,
+│   │             InMemoryTariffRepository,
+│   │             SqliteTariffRepository
+└── ui          — App, MainFrame, TariffFormDialog, TariffTableModel
+
+## Требования для запуска через .jar
+
+- JDK 17+ (JavaFX не требуется — используется Swing).
+- Драйвер SQLite JDBC (`sqlite-jdbc`) должен быть доступен в classpath  
+  (подключён как внешняя библиотека или упакован в исполняемый JAR).
+
+**Сборка исполняемого JAR в IntelliJ IDEA:**
+
+1. `Build → Build Artifacts…`
+2. `JAR → From modules with dependencies…`
+3. Указать `Main class`: `atc.App`
+4. Собрать артефакт и запускать через `java -jar ...`  
+   или использовать как входной файл для `jpackage` / launch4j при сборке `.exe` / `.msi`.
+
+## Вывод
+
+В ходе выполнения 5-й лабораторной работы консольное приложение было перенесено в формат десктопного GUI-приложения на Java Swing и дополнено поддержкой базы данных SQLite.  
+Реализованы все требуемые операции над тарифами (добавление, изменение, удаление, сортировка, импорт/экспорт, расчёты), данные хранятся в таблице БД, а изменения, выполняемые пользователем через интерфейс, сразу отражаются в базе.  
+Таким образом, выполнены требования задания по работе с формами, валидацией ввода, файловыми операциями и интеграцией приложения с СУБД.
+
